@@ -5,7 +5,7 @@ import com.opensymphony.xwork2.ActionContext;
 /**
  * Created by Administrator on 2016/2/28.
  */
-public class LongiAction {
+public class LoginAction {
     private String name;
     private String pwd;
 

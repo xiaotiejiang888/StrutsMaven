@@ -28,16 +28,18 @@
         <global-results>
             <result name="login">/login.jsp</result>
         </global-results>
-              <!--name是url请求名，不需要加后缀（.action）-->
-        <!--class是处理url请求对应的java类，class要求包名+类名-->
-        <!--并且该类是有公共的无参构造方法-->
-        <action name="login" class="cn.sxt.action.LongiAction">
+        <!--name是url请求名，不需要加后缀（.action）
+          class是处理url请求对应的java类，class要求包名+类名
+          并且该类是有公共的无参构造方法
+          method处理请求的方法默认是excute,方法是公共的,返回值是String，无参
+          -->
+        <action name="login" class="cn.sxt.action.LoginAction">
             <result name="success">/success.jsp</result>
 
         </action>
         <action name="hello" class="cn.sxt.action.HelloAction">
             <result>/WEB-INF/hello.jsp</result>
-             <!--<interceptor-ref name="mystack"></interceptor-ref>-->
+            <!--<interceptor-ref name="mystack"></interceptor-ref>-->
         </action>
         <action name="add" class="cn.sxt.action.HelloAction" method="add">
             <result>/WEB-INF/hello.jsp</result>
