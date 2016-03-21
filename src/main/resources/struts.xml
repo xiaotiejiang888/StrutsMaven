@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="default" namespace="/user" extends="struts-default">
+        <interceptors>
+            <interceptor name="timezmy" class="cn.sxt.interceptor.TimeInterceptor"></interceptor>
+            <interceptor name="loginInterceptor" class="cn.sxt.interceptor.LoginInterceptor"></interceptor>
+            <interceptor name="methodInterceptor" class="cn.sxt.interceptor.ListInterceptor"></interceptor>
+            <!--一个拦截器栈中可以包含多个拦截器的引用 拦截器栈的使用和拦截器一致-->
+            <interceptor-stack name="mystack">
+                <interceptor-ref name="methodInterceptor">
+                    <!--配置被拦截的方法-->
+                    <param name="includeMethods">list,add</param>
+                </interceptor-ref>
+                <interceptor-ref name="loginInterceptor"></interceptor-ref>
+                <!--引用拦截器-->
+                <interceptor-ref name="timezmy"/>
+                <!--引用默认的拦截器栈；引用拦截器和引用拦截器栈的方式一样-->
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+        <!--定义默认的拦截器/栈-->
+        <default-interceptor-ref name="mystack"></default-interceptor-ref>
+        <global-results>
+            <result name="login">/login.jsp</result>
+        </global-results>
+              <!--name是url请求名，不需要加后缀（.action）-->
+        <!--class是处理url请求对应的java类，class要求包名+类名-->
+        <!--并且该类是有公共的无参构造方法-->
+        <action name="login" class="cn.sxt.action.LongiAction">
+            <result name="success">/success.jsp</result>
+
+        </action>
+        <action name="hello" class="cn.sxt.action.HelloAction">
+            <result>/WEB-INF/hello.jsp</result>
+             <!--<interceptor-ref name="mystack"></interceptor-ref>-->
+        </action>
+        <action name="add" class="cn.sxt.action.HelloAction" method="add">
+            <result>/WEB-INF/hello.jsp</result>
+            <!--<interceptor-ref name="mystack"></interceptor-ref>-->
+        </action>
+        <action name="list" class="cn.sxt.action.HelloAction" method="list">
+            <result>/WEB-INF/hello.jsp</result>
+            <!--<interceptor-ref name="mystack"></interceptor-ref>-->
+        </action>
+    </package>
+</struts>
