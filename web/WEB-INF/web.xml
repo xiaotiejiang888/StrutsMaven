@@ -12,6 +12,29 @@
         <servlet-name>ServletTest</servlet-name>
         <url-pattern>/ServletTest</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Log4JTestServlet</servlet-name>
+        <servlet-class>cn.sxt.servlet.Log4JTestServlet</servlet-class>
+    </servlet>
+    <!--用来启动 log4jConfigLocation的servlet -->
+    <servlet>
+        <servlet-name>Log4JInitServlet</servlet-name>
+        <servlet-class>cn.sxt.servlet.Log4JInitServlet</servlet-class>
+        <init-param>
+            <param-name>log4j-properties-location</param-name>
+            <param-value>/WEB-INF/classes/log4j.properties</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Log4JInitServlet</servlet-name>
+        <url-pattern>/log4jInit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Log4JTestServlet</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
     <filter>
         <filter-name>struts2</filter-name>
         <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
