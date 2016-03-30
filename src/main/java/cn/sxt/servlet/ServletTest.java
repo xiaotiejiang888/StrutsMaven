@@ -18,18 +18,18 @@ public class ServletTest extends HttpServlet{
     //客户端用get方式访问的时候   浏览器访问
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("doGet");
+        System.out.println("=============doGet");
 //        resp.getWriter().write("<a href= 'http://www.bjsxt.com'>go</a>");
     }
     //post 表单提交 并method被设置为post
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        System.out.println("init");
+        System.out.println("=============init");
     }
 
     @Override
     public void destroy() {
-        System.out.println("destory");
+        System.out.println("================destory");
     }
 }

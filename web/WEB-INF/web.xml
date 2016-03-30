@@ -4,20 +4,58 @@
            xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
            version="3.0">
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/classes/applicationContext.xml
+        </param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <!--<url-pattern>/*</url-pattern>-->
+        <url-pattern>*.action</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>myFilter2</filter-name>
+        <filter-class>cn.sxt.filter.MyFilter2</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>myFilter2</filter-name>
+        <!--<url-pattern>/*</url-pattern>-->
+        <url-pattern>/ServletTest</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>myFilter1</filter-name>
+        <filter-class>cn.sxt.filter.MyFilter1</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>myFilter1</filter-name>
+        <!--<url-pattern>/*</url-pattern>-->
+        <url-pattern>/ServletTest</url-pattern>
+    </filter-mapping>
+
+
+
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
     <servlet>
         <servlet-name>ServletTest</servlet-name>
         <servlet-class>cn.sxt.servlet.ServletTest</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletTest</servlet-name>
-        <url-pattern>/ServletTest</url-pattern>
-    </servlet-mapping>
-
     <servlet>
         <servlet-name>Log4JTestServlet</servlet-name>
         <servlet-class>cn.sxt.servlet.Log4JTestServlet</servlet-class>
     </servlet>
-    <!--用来启动 log4jConfigLocation的servlet -->
     <servlet>
         <servlet-name>Log4JInitServlet</servlet-name>
         <servlet-class>cn.sxt.servlet.Log4JInitServlet</servlet-class>
@@ -28,6 +66,11 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
+        <servlet-name>ServletTest</servlet-name>
+        <url-pattern>/ServletTest</url-pattern>
+    </servlet-mapping>
+    <!--用来启动 log4jConfigLocation的servlet -->
+    <servlet-mapping>
         <servlet-name>Log4JInitServlet</servlet-name>
         <url-pattern>/log4jInit</url-pattern>
     </servlet-mapping>
@@ -35,13 +78,4 @@
         <servlet-name>Log4JTestServlet</servlet-name>
         <url-pattern>/test</url-pattern>
     </servlet-mapping>
-    <filter>
-        <filter-name>struts2</filter-name>
-        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>struts2</filter-name>
-        <!--<url-pattern>/*</url-pattern>-->
-        <url-pattern>*.action</url-pattern>
-    </filter-mapping>
 </web-app>
